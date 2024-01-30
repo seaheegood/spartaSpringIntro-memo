@@ -18,7 +18,6 @@ public class MemoController {
 
     @PostMapping("/memos")
     public MemoResponseDto createMemo(@RequestBody MemoRequestDto requestDto) {
-
         // RequestDto -> Entity
         Memo memo = new Memo(requestDto);
 
@@ -26,7 +25,7 @@ public class MemoController {
         Long maxId = memoList.size() > 0 ? Collections.max(memoList.keySet()) + 1 : 1;
         memo.setId(maxId);
 
-        // Db 저장
+        // DB 저장
         memoList.put(memo.getId(), memo);
 
         // Entity -> ResponseDto
@@ -37,7 +36,7 @@ public class MemoController {
 
     @GetMapping("/memos")
     public List<MemoResponseDto> getMemos() {
-        // Map to List
+        // Map To List
         List<MemoResponseDto> responseList = memoList.values().stream()
                 .map(MemoResponseDto::new).toList();
 
