@@ -4,17 +4,23 @@ import com.sparta.memo.dto.MemoRequestDto;
 import com.sparta.memo.dto.MemoResponseDto;
 import com.sparta.memo.entity.Memo;
 import com.sparta.memo.repository.MemoRepository;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-public class MemoService {
+@Service
+public class MemoService { //memoService
 
     private final MemoRepository memoRepository;
 
+//    @Autowired
+//    public void setDi(MemoRepository memoRepository) {
+//        this.memoRepository = memoRepository;
+//    } -> final 지워야함
+
     public MemoService(MemoRepository memoRepository) {
+
         this.memoRepository = memoRepository;
-    }
+    } // 생성자를 오버로딩해서 주입하는 방식
 
     public MemoResponseDto createMemo(MemoRequestDto requestDto) {
         // RequestDto -> Entity
